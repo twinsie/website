@@ -1,22 +1,66 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Website</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 50px;
-        }
-        h1 {
-            color: #333;
-        }
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101b25">
+  <meta name="description" content="Explore flights, visas, and family resources from Qiwen Luo.">
+  <link rel="canonical" href="https://qiwenluo.com/">
+  <title>Qiwen Luo</title>
+  <style>
+    @font-face { font-family: "DM Sans"; src: url("fonts/dm-sans-latin.woff2") format("woff2"); font-style: normal; font-weight: 100 1000; font-display: swap; }
+    @font-face { font-family: Manrope; src: url("fonts/manrope-latin.woff2") format("woff2"); font-style: normal; font-weight: 200 800; font-display: swap; }
+    :root { color-scheme: dark; font-family: "DM Sans", ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; min-height: 100%; }
+    body { background: #101b25; }
+    main { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); min-height: 100vh; min-height: 100dvh; }
+    .destination { position: relative; display: flex; min-width: 0; min-height: 0; overflow: hidden; align-items: center; justify-content: center; color: #fff; text-align: center; background: var(--background); }
+    .destination::after { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(180deg, rgba(9, 20, 29, .12), rgba(9, 20, 29, .38)); }
+    .destination--visa { color: #1238b9; }
+    .destination--parents { color: #203a33; }
+    .destination--visa::after, .destination--parents::after { background: linear-gradient(180deg, rgba(255, 255, 255, .08), rgba(255, 255, 255, .24)); }
+    .destination--visa .arrow, .destination--parents .arrow { border-color: currentColor; }
+    .destination + .destination { border-left: 1px solid rgba(255, 255, 255, .25); }
+    .preview { position: absolute; inset: -4%; z-index: 0; width: 108%; height: 108%; border: 0; pointer-events: none; opacity: .96; filter: blur(7px) saturate(.9); transition: filter .5s ease, transform .5s ease; }
+    img.preview { object-fit: cover; object-position: 52% center; }
+    .destination:hover .preview, .destination:focus-within .preview { filter: blur(3px) saturate(1); transform: scale(1.035); }
+    .destination a:focus-visible { outline: 3px solid #fff; outline-offset: -8px; }
+    .destination a { position: absolute; inset: 0; z-index: 2; display: flex; align-items: center; justify-content: center; padding: clamp(1.5rem, 4vw, 4rem); color: inherit; text-decoration: none; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+    .content { display: grid; justify-items: center; gap: 1.25rem; }
+    .number { font-size: .72rem; font-weight: 700; letter-spacing: .25em; opacity: .8; }
+    h2 { margin: 0; font-family: Manrope, "DM Sans", sans-serif; font-weight: 600; font-size: clamp(2rem, 6vw, 7.5rem); letter-spacing: -.055em; line-height: 1; }
+    .destination--visa h2 { font-weight: 800; }
+    .destination--parents h2 { font-family: "Songti SC", "Noto Serif CJK SC", serif; font-weight: 500; }
+    .domain { font-size: clamp(.75rem, 1.1vw, .9rem); font-weight: 600; letter-spacing: .05em; overflow-wrap: anywhere; opacity: .85; }
+    .arrow { display: grid; width: 2.6rem; height: 2.6rem; place-items: center; border: 1px solid rgba(255, 255, 255, .7); border-radius: 50%; font-size: 1.2rem; transition: transform .2s ease, background .2s ease; }
+    .destination:hover .arrow, .destination:focus-within .arrow { transform: translate(3px, -3px); background: rgba(255, 255, 255, .16); }
+    @media (orientation: portrait) {
+      main { grid-template-columns: 1fr; grid-template-rows: repeat(3, minmax(0, 1fr)); }
+      .destination + .destination { border-left: 0; border-top: 1px solid rgba(255, 255, 255, .25); }
+      .content { gap: .55rem; }
+      h2 { font-size: clamp(2.5rem, 10vw, 5rem); }
+      .arrow { width: 2rem; height: 2rem; font-size: 1rem; }
+    }
+    @media (prefers-reduced-motion: reduce) { .preview, .arrow { transition: none; } }
+  </style>
 </head>
 <body>
-    <h1>Welcome to My Simple Website</h1>
-    <p>This is a test site hosted on GitHub Pages.</p>
+  <main aria-label="Explore Qiwen Luo websites">
+    <h1 class="sr-only">Qiwen Luo</h1>
+    <section class="destination" style="--background: radial-gradient(circle at 30% 25%, #88a9ba, transparent 55%), linear-gradient(145deg, #516c7b, #1d3545);">
+      <img class="preview" src="images/flights.webp" alt="" loading="eager">
+      <a href="https://flights.qiwenluo.com/"><span class="content"><span class="number">01 / FLIGHTS</span><h2>Flight Atlas</h2><span class="domain">flights.qiwenluo.com</span><span class="arrow" aria-hidden="true">↗</span></span></a>
+    </section>
+    <section class="destination destination--visa" style="--background: radial-gradient(circle at 75% 30%, #aeb3a4, transparent 55%), linear-gradient(145deg, #79867a, #324747);">
+      <img class="preview" src="images/visa.webp" alt="" loading="eager">
+      <a href="https://visa.qiwenluo.com/"><span class="content"><span class="number">02 / VISA</span><h2>Where to Next?</h2><span class="domain">visa.qiwenluo.com</span><span class="arrow" aria-hidden="true">↗</span></span></a>
+    </section>
+    <section class="destination destination--parents" style="--background: radial-gradient(circle at 35% 70%, #d4a38f, transparent 55%), linear-gradient(145deg, #a27d76, #573f48);">
+      <img class="preview" src="images/parents.webp" alt="" loading="eager">
+      <a href="https://parents.qiwenluo.com/"><span class="content"><span class="number">03 / PARENTS</span><h2 lang="zh-Hans">罗家的旅行</h2><span class="domain">parents.qiwenluo.com</span><span class="arrow" aria-hidden="true">↗</span></span></a>
+    </section>
+  </main>
 </body>
 </html>
